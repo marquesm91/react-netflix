@@ -8,61 +8,99 @@ body {
 }
 
 body, .app {
-  background: #fff;
+  background: #141414;
+  color: #fff;
 }
 
-/* main page */
+.movie-card {
+  width: 100%;
+  height: 250px;
+  background-position: center center;
+  background-size: cover;
+  display: flex;
+  flex: 1;
+}
+
+.movie-card-info {
+  font-weight: bold;
+  text-shadow: 2px 2px #000;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding-left: 10px;
+}
+
+.movie-card-add-button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.movie-card-title {
+  font-size: 120%;
+}
+
+.movie-card-rating {
+  font-size: 90%;
+}
+
+.movie-card-description {
+  font-size: 100%;
+}
+
+.movie-list-grid {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.movie-list-grid li {
+  padding: 10px 15px;
+  text-align: left;
+  width: 30%;
+}
 
 .dropdown {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 80px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 3px 3px;
-    z-index: 1;
+  display: none;
+  position: absolute;
+  background-color: #141414;
+  min-width: 80px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 3px 3px;
+  z-index: 1;
+}
+
+.dropdown-content ul {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.dropdown-content ul li {
+  flex: 1;
+  list-style-type: none;
+  cursor: pointer;
+}
+
+.dropdown-content ul li:hover {
+  background-color: #ccc;
 }
 
 .dropdown:hover .dropdown-content {
-    display: flex;
-}
-
-
-.bigpic {
-  postion: relative;
-  width: 100%;
-  height: 400px;
-  display: block;
-  background: url('./icons/jumbotron.jpg');
-}
-
-.bigletters {
-  display: block;
-  font-size: 3em;
-  color: white;
-}
-
-
-.navbar-container {
-  background: white;
-  flex: 1;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  border-bottom: 1px solid #dedede;
-
-}
-
-.navbar-list-field span {
-  font-size: 22px;
-  font-family: 'Helvetica';
-  margin-left: 5px;
 }
 
 .dropdown img {
@@ -72,38 +110,95 @@ body, .app {
   border-radius: 50%;
 }
 
-.navbar-input-field i {
-  width: 25px;
-  height: 25px;
+.jumbotron-container {
+  width: 100%;
+  height: 400px;
+  background-size: cover;
 }
 
-.navbar-input-field input {
-  border-radius: 5px;
-  border-color: black;
-  background-color: 'rgba(0,0,0,0)';
-  padding: 5px;
+.jumbotron-info-container {
+  background-color: #000;
+  width: 30%;
+  height: 100%;
+  box-shadow: 20px 0 220px 100px #000;
 }
 
-.list-books-content {
-  padding: 0 0 80px;
+.jumbotron-info {
+  height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 0 0 5% 8%;
+  font-size: 3em;
+}
+
+.jumbotron-buttons {
+  display: flex;
+  font-size: 3em;
+}
+
+.carousel-container {
+  padding: 0 0 10px;
+}
+
+.carousel-title {
+  padding-left: 25px;
+  font-size: 150%;
+  font-weight: bold;
+  margin: 0;
+}
+
+.navbar-container {
+  background: #141414;
   flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px solid #141414;
 }
 
-.bookshelf {
-  padding: 0 10px 20px;
+.navbar-logo {
+  width: 100%;
+  height: 100%;
 }
 
-@media (min-width: 600px) {
-  .bookshelf {
-    padding: 0 20px 40px;
-  }
+.navbar-logo-container {
+  cursor: pointer;
+  width: 10%;
+  height: 10%;
 }
 
-.bookshelf-title {
-  border-bottom: 1px solid #dedede;
+.navbar-options {
+  cursor: pointer;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  font-family: 'Helvetica';
 }
-.bookshelf-books {
-  text-align: center;
+
+.navbar-options span {
+  cursor: pointer;
+  margin-top: 5px;
+  padding: 5px 5px 5px 5px;
+  border-bottom: 5px solid transparent;
+}
+
+.navbar-input-container {
+  border: 1px solid white;
+  padding: 3px 5px 3px 5px;
+}
+
+.navbar-input-container input[type="text"] {
+  background: transparent;
+  border: none;
+  color: #fff;
+  padding-left: 5px;
+}
+
+.navbar-input-container input[type="text"]:focus {
+  outline: 0;
 }
 
 .open-search {
