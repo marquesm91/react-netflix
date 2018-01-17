@@ -5,8 +5,9 @@
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.1.0",
-    "react-slick": "^0.16.0"
+    "react-items-carousel": "^2.2.1",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
