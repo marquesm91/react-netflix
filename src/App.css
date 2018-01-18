@@ -155,7 +155,7 @@ a {
 .movie-card-container {
   flex: 1;
   display: flex;
-  margin: 15px;
+  margin: 10px;
   opacity: 0;
   -webkit-transition: opacity 0.25s ease-in-out;
   -moz-transition: opacity 0.25s ease-in-out;
@@ -176,14 +176,12 @@ a {
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
-  margin-left: 20px;
 }
 
 .movie-card-button-container {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  margin-right: 25px;
   width: 20%;
 }
 
