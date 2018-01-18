@@ -1,4 +1,4 @@
-html, body, .root {
+html, .root {
   height: 100%;
 }
 
@@ -9,7 +9,15 @@ body {
 body, .app {
   background: #141414;
   color: #fff;
+}
+
+.app {
   margin-top: 50px;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
 }
 
 .navbar-container {
@@ -17,6 +25,7 @@ body, .app {
   position: fixed;
   top: 0;
   width: 100%;
+  height: 50px;
   background: #141414;
   display: flex;
   flex-direction: row;
@@ -28,7 +37,8 @@ body, .app {
 .navbar-logo-container {
   cursor: pointer;
   width: 10%;
-  height: 10%;
+  height: 100%;
+  transform: scale(1.05);
 }
 
 .navbar-logo {
@@ -40,15 +50,17 @@ body, .app {
   cursor: pointer;
   width: 50%;
   display: flex;
+  height: 100%;
   flex-direction: row;
   justify-content: flex-start;
+  align-items: center;
   font-family: 'Helvetica';
 }
 
 .navbar-options span {
   cursor: pointer;
   margin-top: 5px;
-  padding: 5px 5px 5px 5px;
+  padding: 5px 5px 12px 5px;
   border-bottom: 5px solid transparent;
 }
 
@@ -71,7 +83,7 @@ body, .app {
 .movie-card {
   width: 100%;
   height: 250px;
-  margin: 25px;
+  margin: 20px;
   background-position: center center;
   background-size: cover;
   display: flex;
@@ -114,16 +126,11 @@ body, .app {
   padding-left: 10px;
 }
 
-.movie-card-add-button {
+.movie-card-button-container {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-}
-
-.movie-card-add-button {
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  width: 10%;
 }
 
 .movie-card-add-button button {
@@ -137,7 +144,6 @@ body, .app {
   border-radius: 50%;
   background: rgba(0,0,0,0.5);
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  font-size: 0;
 }
 
 .movie-card-add-button button:hover {
@@ -179,6 +185,14 @@ body, .app {
 }
 
 .movie-list-container {
+  margin: 0px 20px 20px 20px;
+}
+
+.movie-list-container h1{
+  margin: 0;
+}
+
+.profile-container {
   margin: 0px 20px 20px 20px;
 }
 
@@ -276,7 +290,15 @@ body, .app {
   display: flex;
 }
 
+.default-button.round-button {
+  border-radius: 50%;
+  padding: 5px 3px 5px 3px;
+}
+
 .default-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   opacity: 0.75;
   background-color: #222;
   border: 1px solid #aaa;
@@ -308,6 +330,10 @@ body, .app {
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
+}
+
+.play-button:focus {
+  outline: 0;
 }
 
 .carousel-container {
