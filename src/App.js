@@ -81,7 +81,9 @@ class NetflixCloneApp extends React.Component {
           />
         )} />
         <Route path='/favorites' render={() => (
-          <ListMovies
+          !this.state.isInputClosed && this.state.fetchedMovies.length
+          ? <Redirect to="/search" />
+          : <ListMovies
             title="Minha Lista"
             movies={this.state.favoriteList}
             favoriteList={this.state.favoriteList}
@@ -89,7 +91,9 @@ class NetflixCloneApp extends React.Component {
           />
         )} />
         <Route path='/profile' render={() => (
-          <Profile title="Informações do Perfil" />
+          !this.state.isInputClosed && this.state.fetchedMovies.length
+          ? <Redirect to="/search" />
+          : <Profile title="Informações do Perfil" />
         )} />
         <Route path='/search' render={() => (
           <ListMovies
