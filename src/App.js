@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { NavBar, MovieCard } from './components';
 import Home from './view/Home';
-import FavoriteMovies from './view/FavoriteMovies';
+import ListMovies from './view/ListMovies';
 import Profile from './view/Profile';
 import * as Movies from './api/Movies';
 
@@ -76,8 +76,9 @@ class NetflixCloneApp extends React.Component {
           />
         )} />
         <Route path='/favorites' render={() => (
-          <FavoriteMovies
+          <ListMovies
             title="Minha Lista"
+            movies={this.state.favoriteList}
             favoriteList={this.state.favoriteList}
             onAddListPressed={movie => this.toggleMovieInFavoriteList(movie)}
           />
@@ -86,9 +87,10 @@ class NetflixCloneApp extends React.Component {
           <Profile title="Informações do Perfil" />
         )} />
         <Route path='/search' render={() => (
-          <FavoriteMovies
+          <ListMovies
             title="Resultados da Pesquisa"
-            favoriteList={this.state.fetchedMovies}
+            movies={this.state.fetchedMovies}
+            favoriteList={this.state.favoriteList}
             onAddListPressed={movie => this.toggleMovieInFavoriteList(movie)}
           />
         )} />

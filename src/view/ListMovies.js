@@ -1,11 +1,11 @@
 import React from 'react';
 import { MovieCard } from '../components';
 
-const FavoriteMovies = ({ favoriteList, title, onAddListPressed }) => (
+const ListMovies = ({ movies, favoriteList, title, onAddListPressed }) => (
   <div className="movie-list-container">
     <h1>{title}</h1>
     <ol className="movie-list-grid">
-      {favoriteList.map(movie => (
+      {movies.map(movie => (
         <li key={movie.id}>
           <MovieCard
             movie={movie}
@@ -18,4 +18,4 @@ const FavoriteMovies = ({ favoriteList, title, onAddListPressed }) => (
   </div>
 );
 
-export default FavoriteMovies;
+export default ListMovies;
