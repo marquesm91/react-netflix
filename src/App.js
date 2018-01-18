@@ -44,13 +44,15 @@ class NetflixApp extends React.Component {
 
   getMovies = () => this.state.movies.map(movie => (
     <div key={movie.id} className="movie-card" style={{ backgroundImage: `url(${movie.image})` }}>
-      <div className="movie-card-info">
-        <div className="movie-card-title">{movie.title}</div>
-        <div className="movie-card-rating">{movie.rating}</div>
-        <div className="movie-card-description">{movie.description}</div>
-      </div>
-      <div className="movie-card-add-button">
-        <button onClick={() => this.setState({ favoriteList: [...this.state.favoriteList, movie]})}>ADD</button>
+      <div className="movie-card-container">
+        <div className="movie-card-info">
+          <div className="movie-card-title">{movie.title}</div>
+          <div className="movie-card-rating">{movie.rating}</div>
+          <div className="movie-card-description">{movie.description}</div>
+        </div>
+        <div className={'movie-card-add-button ' + (this.state.favoriteList.filter(l => l.title === movie.title).length ? 'exist-on-list' : 'not-exist-on-list')}>
+          <button onClick={() => this.setState({ favoriteList: [...this.state.favoriteList, movie]})}>Add</button>
+        </div>
       </div>
     </div>
   ));
@@ -86,7 +88,7 @@ class NetflixApp extends React.Component {
           </div>
         </div>
         {this.state.listPage ?
-          <div>
+          <div className="movie-list-container">
             <h1>Minha Lista</h1>
             <ol className="movie-list-grid">
               {this.state.favoriteList.map(movie => (
@@ -97,8 +99,8 @@ class NetflixApp extends React.Component {
                       <div className="movie-card-rating">{movie.rating}</div>
                       <div className="movie-card-description">{movie.description}</div>
                     </div>
-                    <div className="movie-card-add-button">
-                      <button onClick={() => this.setState({ favoriteList: this.state.favoriteList.filter(l => l.id !== movie.id)})}>REMOVE</button>
+                    <div className={'movie-card-add-button ' + (this.state.favoriteList.filter(l => l.title === movie.title).length ? 'exist-on-list' : 'not-exist-on-list')}>
+                      <button onClick={() => this.setState({ favoriteList: this.state.favoriteList.filter(l => l.id !== movie.id)})}>Remove</button>
                     </div>
                   </div>
                 </li>
@@ -110,17 +112,21 @@ class NetflixApp extends React.Component {
             <div className="jumbotron-container" style={{ backgroundImage: `url('http://seriesemcena.com.br/wp-content/uploads/2017/09/431311.jpg')`}}>
               <div className="jumbotron-info-container">
               <div className="jumbotron-info">
-                <span className="jumbotron-title">Nome</span>
-                <span className="jumbotron-description">Descrição</span>
+                <span className="jumbotron-title">The Big Bang Theory</span>
+                <span className="jumbotron-description">O Lorem Ipsum é um texto modelo da indústria tipográfica e de impressão. O Lorem Ipsum tem vindo a ser o texto padrão usado por estas indústrias desde o ano de 1500, quando uma misturou os caracteres de um texto</span>
                 <div className="jumbotron-buttons">
-                  <button onClick={() => console.log('Assistir!')}>Assistir</button>
-                  <button onClick={() => this.setState({ favoriteList: [...this.state.favoriteList, {
+                  <button className="play-button" onClick={() => console.log('Assistir!')}>
+                    <i className="fa fa-play" aria-hidden="true"></i> Assistir
+                  </button>
+                  <button className="default-button" onClick={() => this.setState({ favoriteList: [...this.state.favoriteList, {
                     id: 4,
                     title: 'Meu Malvado Favorito',
                     'rating': 2,
                     'image': 'https://image.tmdb.org/t/p/w533_and_h300_bestv2/yo1ef57MEPkEE4BDZKTZGH9uDcX.jpg',
                     'description': 'bla bla bla'
-                  }]})}>ADD</button>
+                  }]})}>
+                    <i className={`fa fa-${this.state.favoriteList.filter(l => l.id === 4).length ? 'check' : 'plus'}`} aria-hidden="true"></i> Minha lista
+                  </button>
                 </div>
               </div>
               </div>
@@ -150,8 +156,8 @@ class NetflixApp extends React.Component {
                   activePosition={'center'}
 
                   chevronWidth={24}
-                  rightChevron={<i className="fa fa-angle-right fa-5x" aria-hidden="true" style={{ color: '#999'}}></i>}
-                  leftChevron={<i className="fa fa-angle-left fa-5x" aria-hidden="true" style={{ color: '#999'}}></i>}
+                  rightChevron={<i className="fa fa-angle-right fa-5x" aria-hidden="true" style={{ color: '#fff'}}></i>}
+                  leftChevron={<i className="fa fa-angle-left fa-5x" aria-hidden="true" style={{ color: '#fff'}}></i>}
                   outsideChevron={false}
                 >
                   {this.getMovies()}
