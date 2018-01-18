@@ -19,6 +19,14 @@ const Menu = ({ changeMenuMarker, page }) => (
         Minha Lista
       </span>
     </Link>
+    <Link to='/search' onClick={() => changeMenuMarker('busca')}>
+      <span
+        className="navbar-menu-option"
+        style={{ borderColor: page === 'busca' ? '#B8130D' : null }}
+      >
+        Busca
+      </span>
+    </Link>
   </div>
 );
 
