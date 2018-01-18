@@ -86,7 +86,7 @@ class Input extends Component {
                 className="fa fa-times"
                 aria-hidden="true"
                 onClick={this.resetQueryHandler}
-                style={{ visibility: this.state.query.length ? 'visible' : 'hidden' , cursor: 'pointer' }}
+                style={{ visibility: this.state.query.length && this.state.inputOpacity ? 'visible' : 'hidden' , cursor: 'pointer' }}
               ></i>
             </div>
 
