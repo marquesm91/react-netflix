@@ -25,16 +25,21 @@ class Input extends Component {
   handleClickOutside = event => {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
       this.closeInputHandler();
+      this.props.onCollapseInputHandler();
     }
   }
 
-  openInputHandler = () => this.setState({
-    containerWidth: '85%',
-    containerBorderColor: '#fff',
-    inputFocus: true,
-    inputOpacity: 1,
-    cursor: 'default'
-  });
+  openInputHandler = () => {
+    this.setState({
+      containerWidth: '85%',
+      containerBorderColor: '#fff',
+      inputFocus: true,
+      inputOpacity: 1,
+      cursor: 'default'
+    });
+
+    this.props.onExpandInputHandler();
+  }
 
   closeInputHandler = () => this.setState({
     containerWidth: '10%',

@@ -9,10 +9,6 @@ class NavBar extends Component {
 
   changeMenuMarkerHandler = (page) => this.setState({ page });
 
-  doSearch = query => {
-    Movies.search(query).then(res => this.props.onSearchMovies(res.results));
-  }
-
   render() {
     return (
       <div className="navbar-container">
@@ -23,7 +19,9 @@ class NavBar extends Component {
         />
         <Input
           placeholder="Título do filme"
-          onEnterPressed={query => this.doSearch(query)}
+          onEnterPressed={query => this.props.onSearchMovies(query)}
+          onCollapseInputHandler={() => this.props.onCollapseInputHandler()}
+          onExpandInputHandler={() => this.props.onExpandInputHandler()}
         />
         <Avatar />
       </div>

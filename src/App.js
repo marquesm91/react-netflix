@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { NavBar, MovieCard } from './components';
 import Home from './view/Home';
 import ListMovies from './view/ListMovies';
@@ -17,7 +17,8 @@ class NetflixCloneApp extends React.Component {
     scifiMovies: [],
     horrorMovies: [],
     lastestMovies: [],
-    fetchedMovies: []
+    fetchedMovies: [],
+    isInputClosed: true
   }
 
   componentDidMount() {
@@ -50,20 +51,24 @@ class NetflixCloneApp extends React.Component {
         ...favoriteList.slice(index + 1)
       ]});
     }
-
   }
 
-  onSearchMoviesHandler = fetchedMovies => {
-    this.setState({ fetchedMovies })
-    console.log(this.props)
+  doSearch = query => {
+    Movies.search(query).then(res => this.setState({ fetchedMovies: res.results }));
   }
 
   render() {
     return (
       <div className="app">
-        <NavBar onSearchMovies={this.onSearchMoviesHandler} />
+        <NavBar
+          onSearchMovies={query => this.doSearch(query)}
+          onCollapseInputHandler={() => this.setState({ isInputClosed: true })}
+          onExpandInputHandler={() => this.setState({ isInputClosed: false })}
+        />
         <Route exact path='/' render={() => (
-          <Home
+          !this.state.isInputClosed && this.state.fetchedMovies.length
+          ? <Redirect to="/search" />
+          : <Home
             lastestMovies={this.state.lastestMovies}
             comedyMovies={this.state.comedyMovies}
             animationMovies={this.state.animationMovies}
