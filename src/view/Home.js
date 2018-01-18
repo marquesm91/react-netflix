@@ -3,18 +3,27 @@ import { MovieCard, Jumbotron, Carousel } from '../components';
 
 class Home extends Component {
   render() {
-    const { movieJumbotron, favoriteList, onAddListPressed, movies } = this.props;
+    const {
+      movieJumbotron,
+      favoriteList,
+      onAddListPressed,
+      comedyMovies,
+      animationMovies,
+      horrorMovies,
+      scifiMovies,
+      lastestMovies
+    } = this.props;
 
     return (
       <div className="home-container">
-        <Jumbotron
+        {movieJumbotron ? <Jumbotron
           movie={movieJumbotron}
           favoriteList={favoriteList}
           onAddListPressed={movie => onAddListPressed(movie)}
-        />
+        /> : null}
 
-        <Carousel title="Recomendados">
-          {movies.map(movie => (
+        {lastestMovies.length ? <Carousel title="Nos Cinemas">
+          {lastestMovies.map(movie => (
             <MovieCard
               key={movie.id}
               movie={movie}
@@ -22,10 +31,10 @@ class Home extends Component {
               onAddListPressed={movie => onAddListPressed(movie)}
             />
           ))}
-        </Carousel>
+        </Carousel> : null}
 
-        <Carousel title="Animação">
-          {movies.map(movie => (
+        {comedyMovies.length ? <Carousel title="Comédia">
+          {comedyMovies.map(movie => (
             <MovieCard
               key={movie.id}
               movie={movie}
@@ -33,7 +42,40 @@ class Home extends Component {
               onAddListPressed={movie => onAddListPressed(movie)}
             />
           ))}
-        </Carousel>
+        </Carousel> : null}
+
+        {scifiMovies.length ? <Carousel title="Ficção Científica">
+          {scifiMovies.map(movie => (
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              favoriteList={favoriteList}
+              onAddListPressed={movie => onAddListPressed(movie)}
+            />
+          ))}
+        </Carousel> : null}
+
+        {animationMovies.length ? <Carousel title="Animação">
+          {animationMovies.map(movie => (
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              favoriteList={favoriteList}
+              onAddListPressed={movie => onAddListPressed(movie)}
+            />
+          ))}
+        </Carousel> : null}
+
+        {horrorMovies.length ? <Carousel title="Terror">
+          {horrorMovies.map(movie => (
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              favoriteList={favoriteList}
+              onAddListPressed={movie => onAddListPressed(movie)}
+            />
+          ))}
+        </Carousel> : null}
       </div>
     );
   }

@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 const avatarUrl = require('../icons/empty_avatar.jpg');
 
 const Avatar = () => (
-  <div className="dropdown">
+  <div className="avatar-dropdown">
     <img src={avatarUrl} alt='navbar-avatar' />
-    <div className="dropdown-content">
+    <div className="avatar-dropdown-content">
       <ul style={{ listStyle: 'none' }}>
         <Link to='/profile'>
           <li>Conta</li>

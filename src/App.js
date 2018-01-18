@@ -4,49 +4,29 @@ import { NavBar, MovieCard } from './components';
 import Home from './view/Home';
 import FavoriteMovies from './view/FavoriteMovies';
 import Profile from './view/Profile';
+import * as Movies from './api/Movies';
 
 import './App.css'
 
 class NetflixCloneApp extends React.Component {
   state = {
     favoriteList: [],
-    movies: [
-      {
-        id: 1,
-        title: 'Procurando Dory',
-        'rating': 4,
-        'image': 'https://image.tmdb.org/t/p/w533_and_h300_bestv2/3iSCdXjDmY3DuEOUYsElu35vQU6.jpg',
-        'description': 'bla bla bla'
-      },
-      {
-        id: 2,
-        title: 'Procurando Nemo',
-        'rating': 3,
-        'image': 'https://image.tmdb.org/t/p/w533_and_h300_bestv2/n2vIGWw4ezslXjlP0VNxkp9wqwU.jpg',
-        'description': 'bla bla bla'
-      },
-      {
-        id: 3,
-        title: 'Vida de Inseto',
-        'rating': 5,
-        'image': 'https://image.tmdb.org/t/p/w533_and_h300_bestv2/gOvW00ZMoEiyRwXVkHPfBictPAl.jpg',
-        'description': 'bla bla bla'
-      },
-      {
-        id: 4,
-        title: 'Meu Malvado Favorito',
-        'rating': 2,
-        'image': 'https://image.tmdb.org/t/p/w533_and_h300_bestv2/yo1ef57MEPkEE4BDZKTZGH9uDcX.jpg',
-        'description': 'bla bla bla'
-      }
-    ],
-    movieJumbotron: {
-      id: 99,
-      title: 'The Big Bang Theory',
-      rating: 5,
-      image: 'http://seriesemcena.com.br/wp-content/uploads/2017/09/431311.jpg',
-      description: 'O Lorem Ipsum é um texto modelo da indústria tipográfica e de impressão. O Lorem Ipsum tem vindo a ser o texto padrão usado'
-    }
+    movieJumbotron: {},
+    comedyMovies: [],
+    animationMovies: [],
+    scifiMovies: [],
+    horrorMovies: [],
+    lastestMovies: [],
+    fetchedMovies: []
+  }
+
+  componentDidMount() {
+    Movies.getMostPopular().then(res => this.setState({ movieJumbotron: res }));
+    Movies.getInTheater().then(res => this.setState({ lastestMovies: res.results }));
+    Movies.getByGenrer('Comédia').then(res => this.setState({ comedyMovies: res.results }));
+    Movies.getByGenrer('Animação').then(res => this.setState({ animationMovies: res.results }));
+    Movies.getByGenrer('Ficção científica').then(res => this.setState({ scifiMovies: res.results }));
+    Movies.getByGenrer('Terror').then(res => this.setState({ horrorMovies: res.results }));
   }
 
   getMovies = () => this.state.movies.map(movie => (
@@ -73,12 +53,22 @@ class NetflixCloneApp extends React.Component {
 
   }
 
+  onSearchMoviesHandler = fetchedMovies => {
+    this.setState({ fetchedMovies })
+    console.log(this.props)
+  }
+
   render() {
     return (
       <div className="app">
-        <NavBar />
+        <NavBar onSearchMovies={this.onSearchMoviesHandler} />
         <Route exact path='/' render={() => (
           <Home
+            lastestMovies={this.state.lastestMovies}
+            comedyMovies={this.state.comedyMovies}
+            animationMovies={this.state.animationMovies}
+            scifiMovies={this.state.scifiMovies}
+            horrorMovies={this.state.horrorMovies}
             movies={this.state.movies}
             movieJumbotron={this.state.movieJumbotron}
             favoriteList={this.state.favoriteList}
@@ -94,6 +84,13 @@ class NetflixCloneApp extends React.Component {
         )} />
         <Route path='/profile' render={() => (
           <Profile title="Informações do Perfil" />
+        )} />
+        <Route path='/search' render={() => (
+          <FavoriteMovies
+            title="Resultados da Pesquisa"
+            favoriteList={this.state.fetchedMovies}
+            onAddListPressed={movie => this.toggleMovieInFavoriteList(movie)}
+          />
         )} />
       </div>
     )
