@@ -42,7 +42,7 @@ export const search = query =>
             let movies = data.results
               .map(result => result.known_for)
               .reduce((a, b) => [...a, ...b]);
-
+            console.log(movies)
             return movies;
           })
       }

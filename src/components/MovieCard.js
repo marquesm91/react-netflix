@@ -8,9 +8,16 @@ const TRUNCATE_LENGTH = 100;
 const MovieCard = ({ movie, favoriteList, onAddListPressed }) => (
   <div className="movie-card" style={{ backgroundImage: `url(${imageUrl}${size}${movie.backdrop_path})` }}>
     <div className="movie-card-container">
-      <div className="movie-card-info">
+      <div className="movie-card-text">
         <div className="movie-card-title">{movie.title}</div>
-        <div className="movie-card-rating">{movie.vote_average}</div>
+        <div className="movie-card-info">
+          <div className="movie-card-year">{movie.release_date ? movie.release_date.split('-')[0] : null}</div>
+          <div className="movie-card-rating">
+            <div className="stars-outer">
+              <div className="stars-inner" style={{ width: `${(movie.vote_average / 10)*100}%` }}></div>
+            </div>
+          </div>
+        </div>
         <div className="movie-card-description">{movie.overview ? movie.overview.substring(0, TRUNCATE_LENGTH) + '...' : 'Esse filme ainda não tem uma descrição.'}</div>
       </div>
       <div className="movie-card-button-container">
