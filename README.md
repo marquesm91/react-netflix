@@ -14,7 +14,7 @@ The application will open your default browser on https://localhost:3000/
 
 # About the application
 
-Besides the default installation with `create-react-app` I added two 3rd party library:
+Besides the default installation with `create-react-app`, two 3rd party library was added:
 
 * `react-router-dom` found [here](https://github.com/ReactTraining/react-router).
 * `react-items-carousel` found [here](https://github.com/bitriddler/react-items-carousel).
@@ -27,3 +27,9 @@ The first one was used to user have a better experience with url navigation and 
 * The search input on navbar has a nice translate style like netflix and can search for movie names and movies related to a famous person. eg. search for Dory and search for Chris Evans.
 * When you search for something and hit enter you will be redirect to Search page only if your results have at least one movie.
 * For each Movie Card you can add to your favorite list and it was accessible in Minha Lista on navbar. If the movie already exists on your favorite list a check icon will be visible until you choose to remove it.
+
+# Ways to improve this project
+
+* Make use of Redux to a better state management
+* Implement another carousel to have a better way to apply style
+* Improve responsiveness to be mobile friendly
