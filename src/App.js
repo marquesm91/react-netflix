@@ -3,41 +3,34 @@ import { Route, Redirect } from 'react-router-dom';
 import { NavBar, MovieCard } from './components';
 import Home from './view/Home';
 import ListMovies from './view/ListMovies';
-import Profile from './view/Profile';
 import * as Movies from './api/Movies';
 
 import './App.css'
 
 class NetflixCloneApp extends React.Component {
   state = {
-    favoriteList: [],
     movieJumbotron: {},
-    comedyMovies: [],
-    animationMovies: [],
-    scifiMovies: [],
-    horrorMovies: [],
-    lastestMovies: [],
+    movies: {
+      comedyMovies: [],
+      animationMovies: [],
+      scifiMovies: [],
+      horrorMovies: [],
+      lastestMovies: []
+    },
+    favoriteList: [],
     fetchedMovies: [],
-    isInputClosed: true
+    isInputClosed: true,
+    avatarPhoto: ''
   }
 
   componentDidMount() {
     Movies.getMostPopular().then(res => this.setState({ movieJumbotron: res }));
-    Movies.getInTheater().then(res => this.setState({ lastestMovies: res }));
-    Movies.getByGenrer('Comédia').then(res => this.setState({ comedyMovies: res }));
-    Movies.getByGenrer('Animação').then(res => this.setState({ animationMovies: res }));
-    Movies.getByGenrer('Ficção científica').then(res => this.setState({ scifiMovies: res }));
-    Movies.getByGenrer('Terror').then(res => this.setState({ horrorMovies: res }));
+    Movies.getInTheater().then(res => this.setState({ movies: { ...this.state.movies, lastestMovies: res } }));
+    Movies.getByGenrer('Comédia').then(res => this.setState({ movies: { ...this.state.movies, comedyMovies: res } }));
+    Movies.getByGenrer('Animação').then(res => this.setState({ movies: { ...this.state.movies, animationMovies: res } }));
+    Movies.getByGenrer('Ficção científica').then(res => this.setState({ movies: { ...this.state.movies, scifiMovies: res } }));
+    Movies.getByGenrer('Terror').then(res => this.setState({ movies: { ...this.state.movies, horrorMovies: res } }));
   }
-
-  getMovies = () => this.state.movies.map(movie => (
-    <MovieCard
-      key={movie.id}
-      movie={movie}
-      favoriteList={this.state.favoriteList}
-      onAddListPressed={movie => this.toggleMovieInFavoriteList(movie)}
-    />
-  ));
 
   toggleMovieInFavoriteList = movie => {
     const { favoriteList } = this.state;
@@ -69,31 +62,21 @@ class NetflixCloneApp extends React.Component {
           !this.state.isInputClosed && this.state.fetchedMovies.length
           ? <Redirect to="/search" />
           : <Home
-            lastestMovies={this.state.lastestMovies}
-            comedyMovies={this.state.comedyMovies}
-            animationMovies={this.state.animationMovies}
-            scifiMovies={this.state.scifiMovies}
-            horrorMovies={this.state.horrorMovies}
-            movies={this.state.movies}
-            movieJumbotron={this.state.movieJumbotron}
-            favoriteList={this.state.favoriteList}
-            onAddListPressed={movie => this.toggleMovieInFavoriteList(movie)}
-          />
+              movies={this.state.movies}
+              movieJumbotron={this.state.movieJumbotron}
+              favoriteList={this.state.favoriteList}
+              onAddListPressed={movie => this.toggleMovieInFavoriteList(movie)}
+            />
         )} />
         <Route path='/favorites' render={() => (
           !this.state.isInputClosed && this.state.fetchedMovies.length
           ? <Redirect to="/search" />
           : <ListMovies
-            title="Minha Lista"
-            movies={this.state.favoriteList}
-            favoriteList={this.state.favoriteList}
-            onAddListPressed={movie => this.toggleMovieInFavoriteList(movie)}
-          />
-        )} />
-        <Route path='/profile' render={() => (
-          !this.state.isInputClosed && this.state.fetchedMovies.length
-          ? <Redirect to="/search" />
-          : <Profile title="Informações do Perfil" />
+              title="Minha Lista"
+              movies={this.state.favoriteList}
+              favoriteList={this.state.favoriteList}
+              onAddListPressed={movie => this.toggleMovieInFavoriteList(movie)}
+            />
         )} />
         <Route path='/search' render={() => (
           <ListMovies

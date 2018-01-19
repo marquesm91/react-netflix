@@ -3,27 +3,18 @@ import { MovieCard, Jumbotron, Carousel } from '../components';
 
 class Home extends Component {
   render() {
-    const {
-      movieJumbotron,
-      favoriteList,
-      onAddListPressed,
-      comedyMovies,
-      animationMovies,
-      horrorMovies,
-      scifiMovies,
-      lastestMovies
-    } = this.props;
+    const { movieJumbotron, favoriteList, onAddListPressed, movies } = this.props;
 
     return (
       <div className="home-container">
-        {movieJumbotron ? <Jumbotron
+        <Jumbotron
           movie={movieJumbotron}
           favoriteList={favoriteList}
           onAddListPressed={movie => onAddListPressed(movie)}
-        /> : null}
+        />
 
-        {lastestMovies.length ? <Carousel title="Nos Cinemas">
-          {lastestMovies.map(movie => (
+        <Carousel title="Nos Cinemas">
+          {movies.lastestMovies.map(movie => (
             <MovieCard
               key={movie.id}
               movie={movie}
@@ -31,10 +22,10 @@ class Home extends Component {
               onAddListPressed={movie => onAddListPressed(movie)}
             />
           ))}
-        </Carousel> : null}
+        </Carousel>
 
-        {comedyMovies.length ? <Carousel title="Comédia">
-          {comedyMovies.map(movie => (
+        <Carousel title="Os melhores para te dar aquele susto">
+          {movies.horrorMovies.map(movie => (
             <MovieCard
               key={movie.id}
               movie={movie}
@@ -42,10 +33,10 @@ class Home extends Component {
               onAddListPressed={movie => onAddListPressed(movie)}
             />
           ))}
-        </Carousel> : null}
+        </Carousel>
 
-        {scifiMovies.length ? <Carousel title="Ficção Científica">
-          {scifiMovies.map(movie => (
+        <Carousel title="Para chorar de rir">
+          {movies.comedyMovies.map(movie => (
             <MovieCard
               key={movie.id}
               movie={movie}
@@ -53,10 +44,10 @@ class Home extends Component {
               onAddListPressed={movie => onAddListPressed(movie)}
             />
           ))}
-        </Carousel> : null}
+        </Carousel>
 
-        {animationMovies.length ? <Carousel title="Animação">
-          {animationMovies.map(movie => (
+        <Carousel title="Filmes que farão você viajar em outro mundo">
+          {movies.scifiMovies.map(movie => (
             <MovieCard
               key={movie.id}
               movie={movie}
@@ -64,10 +55,10 @@ class Home extends Component {
               onAddListPressed={movie => onAddListPressed(movie)}
             />
           ))}
-        </Carousel> : null}
+        </Carousel>
 
-        {horrorMovies.length ? <Carousel title="Terror">
-          {horrorMovies.map(movie => (
+        <Carousel title="Animações para relaxar sua tarde">
+          {movies.animationMovies.map(movie => (
             <MovieCard
               key={movie.id}
               movie={movie}
@@ -75,7 +66,7 @@ class Home extends Component {
               onAddListPressed={movie => onAddListPressed(movie)}
             />
           ))}
-        </Carousel> : null}
+        </Carousel>
       </div>
     );
   }
