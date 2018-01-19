@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Logo, Menu, Input, Avatar } from './index';
-import * as Movies from '../api/Movies';
 
 class NavBar extends Component {
   state = {
