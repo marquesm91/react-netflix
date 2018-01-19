@@ -17,7 +17,7 @@ class NavBar extends Component {
           changeMenuMarker={(page) => this.changeMenuMarkerHandler(page)}
         />
         <Input
-          placeholder="Título do filme"
+          placeholder="Filmes, pessoas..."
           onEnterPressed={query => this.props.onSearchMovies(query)}
           onCollapseInputHandler={() => this.props.onCollapseInputHandler()}
           onExpandInputHandler={() => this.props.onExpandInputHandler()}
