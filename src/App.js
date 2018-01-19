@@ -23,11 +23,11 @@ class NetflixCloneApp extends React.Component {
 
   componentDidMount() {
     Movies.getMostPopular().then(res => this.setState({ movieJumbotron: res }));
-    Movies.getInTheater().then(res => this.setState({ lastestMovies: res.results }));
-    Movies.getByGenrer('Comédia').then(res => this.setState({ comedyMovies: res.results }));
-    Movies.getByGenrer('Animação').then(res => this.setState({ animationMovies: res.results }));
-    Movies.getByGenrer('Ficção científica').then(res => this.setState({ scifiMovies: res.results }));
-    Movies.getByGenrer('Terror').then(res => this.setState({ horrorMovies: res.results }));
+    Movies.getInTheater().then(res => this.setState({ lastestMovies: res }));
+    Movies.getByGenrer('Comédia').then(res => this.setState({ comedyMovies: res }));
+    Movies.getByGenrer('Animação').then(res => this.setState({ animationMovies: res }));
+    Movies.getByGenrer('Ficção científica').then(res => this.setState({ scifiMovies: res }));
+    Movies.getByGenrer('Terror').then(res => this.setState({ horrorMovies: res }));
   }
 
   getMovies = () => this.state.movies.map(movie => (
@@ -54,7 +54,7 @@ class NetflixCloneApp extends React.Component {
   }
 
   doSearch = query => {
-    Movies.search(query).then(res => this.setState({ fetchedMovies: res.results }));
+    Movies.search(query).then(res => this.setState({ fetchedMovies: res }));
   }
 
   render() {

@@ -2,6 +2,7 @@ const api = "https://api.themoviedb.org/3"
 const apiKey = 'df1a8a2aad5fbba70d7851155c59e9f7';
 const defaultOptions= 'language=pt-BR';
 
+const searchPersonPath = 'search/person';
 const searchMoviesPath = 'search/movie';
 const genresMoviesPath = 'genre/movie/list';
 const discoverMoviesPath = 'discover/movie';
@@ -17,13 +18,13 @@ export const getByGenrer = (genrer) =>
 
       return fetch(`${api}/${discoverMoviesPath}?api_key=${apiKey}&${defaultOptions}&sort_by=popularity.desc&with_genres=${ids}`)
         .then(res => res.json())
-        .then(res => res)
+        .then(data => data.results)
     })
 
 export const getInTheater = () =>
   fetch(`${api}/${moviesTheaterPath}?api_key=${apiKey}&${defaultOptions}`)
     .then(res => res.json())
-    .then(data => data)
+    .then(data => data.results)
 
 export const getMostPopular = () =>
 fetch(`${api}/${mostPopularMoviePath}?api_key=${apiKey}&${defaultOptions}`)
@@ -33,4 +34,18 @@ fetch(`${api}/${mostPopularMoviePath}?api_key=${apiKey}&${defaultOptions}`)
 export const search = query =>
   fetch(`${api}/${searchMoviesPath}?api_key=${apiKey}&query=${query}&${defaultOptions}`)
     .then(res => res.json())
-    .then(data => data)
+    .then(data => {
+      if (!data.total_results) {
+        return fetch(`${api}/${searchPersonPath}?api_key=${apiKey}&query=${query}&${defaultOptions}`)
+          .then(res => res.json())
+          .then(data => {
+            let movies = data.results
+              .map(result => result.known_for)
+              .reduce((a, b) => [...a, ...b]);
+
+            return movies;
+          })
+      }
+
+      return data.results;
+    })
