@@ -19,7 +19,7 @@ Besides the default installation with `create-react-app`, two 3rd party library 
 * `react-router-dom` found [here](https://github.com/ReactTraining/react-router).
 * `react-items-carousel` found [here](https://github.com/bitriddler/react-items-carousel).
 
-The first one was used to user have a better experience with url navigation and keep sync with the react application. The other one was to ease the use of horizontal carousel like Netflix.
+The first one was used to user have a better experience with url navigation and keep react application sync'd. The other one was to ease the use of horizontal carousel like Netflix.
 
 # Features
 
