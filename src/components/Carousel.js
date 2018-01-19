@@ -22,7 +22,7 @@ class Carousel extends Component {
             enablePlaceholder
             numberOfPlaceholderItems={5}
             minimumPlaceholderTime={1000}
-            placeholderItem={<div style={{ height: 250, background: '#000' }}></div>}
+            placeholderItem={<div style={{ height: 250, background: '#202020' }}></div>}
 
             // Carousel configurations
             numberOfCards={3}

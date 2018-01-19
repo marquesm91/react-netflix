@@ -6,7 +6,13 @@ const size = 'w500';
 const TRUNCATE_LENGTH = 100;
 
 const MovieCard = ({ movie, favoriteList, onAddListPressed }) => (
-  <div className="movie-card" style={{ backgroundImage: `url(${imageUrl}${size}${movie.backdrop_path})` }}>
+  <div
+    className="movie-card"
+    style={{
+      backgroundColor: '#202020',
+      backgroundImage: `url(${imageUrl}${size}${movie.backdrop_path})`
+    }}
+  >
     <div className="movie-card-container">
       <div className="movie-card-text">
         <div className="movie-card-title">{movie.title}</div>

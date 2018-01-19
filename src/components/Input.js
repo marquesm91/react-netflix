@@ -18,10 +18,6 @@ class Input extends Component {
     document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
-  setWrapperRef = node => {
-    this.wrapperRef = node;
-  }
-
   handleClickOutside = event => {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
       this.closeInputHandler();
@@ -68,7 +64,7 @@ class Input extends Component {
             width: this.state.containerWidth,
             borderColor: this.state.containerBorderColor
           }}
-          ref={this.setWrapperRef}
+          ref={node => this.wrapperRef = node}
         >
           <div className="navbar-input">
             <i
@@ -84,14 +80,17 @@ class Input extends Component {
               onKeyPress={this.onKeyPressHandler}
               onChange={this.onChangeHandler}
               style={{ opacity: this.state.inputOpacity}}
-              ref={(input) => {input && window.requestAnimationFrame(()=>{input.focus()})}}
+              ref={input => input && window.requestAnimationFrame(() => input.focus())}
             />
             <div className="navbar-input-reset-query">
               <i
                 className="fa fa-times"
                 aria-hidden="true"
                 onClick={this.resetQueryHandler}
-                style={{ visibility: this.state.query.length && this.state.inputOpacity ? 'visible' : 'hidden' , cursor: 'pointer' }}
+                style={{
+                  visibility: this.state.query.length && this.state.inputOpacity ? 'visible' : 'hidden',
+                  cursor: 'pointer'
+                }}
               ></i>
             </div>
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { NavBar, MovieCard } from './components';
+import { NavBar } from './components';
 import Home from './view/Home';
 import ListMovies from './view/ListMovies';
 import * as Movies from './api/Movies';

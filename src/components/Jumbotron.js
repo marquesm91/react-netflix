@@ -5,7 +5,12 @@ const imageUrl = 'https://image.tmdb.org/t/p/';
 const size = 'original';
 
 const Jumbotron = ({ movie, favoriteList, onAddListPressed }) => (
-  <div className="jumbotron-container" style={{ backgroundImage: `url(${imageUrl}${size}${movie.backdrop_path})` }}>
+  <div
+    className="jumbotron-container"
+    style={{
+      backgroundColor: '#202020',
+      backgroundImage: `url(${imageUrl}${size}${movie.backdrop_path})`
+  }}>
     <div className="jumbotron-info-container">
       <div className="jumbotron-info">
         <span className="jumbotron-title">{movie.title}</span>
