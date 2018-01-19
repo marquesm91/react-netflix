@@ -33,3 +33,4 @@ The first one was used to user have a better experience with url navigation and 
 * Make use of Redux to a better state management
 * Implement another carousel to have a better way to apply style
 * Improve responsiveness to be mobile friendly
+* Handle errors and show a friendly message when search results are null
