@@ -34,6 +34,10 @@ export const search = query =>
         return fetch(`${api}/search/person?api_key=${apiKey}&query=${query}&${defaultOptions}`)
           .then(res => res.json())
           .then(data => {
+            if (!data.total_results) {
+              return [];
+            }
+            
             let movies = data.results
               .map(result => result.known_for) /* get only array of known_for */
               .reduce((a, b) => [...a, ...b]); /* reduce many arrays into only one */
